@@ -1676,8 +1676,8 @@ static void PWR_waitForWake(void) {
 			break;
 		}
 		SDL_Delay(200);
-		if (pwr.can_poweroff && SDL_GetTicks()-sleep_ticks>=120000) { // increased to two minutes
-			if (pwr.is_charging) sleep_ticks += 60000; // check again in a minute
+		if (pwr.can_poweroff && SDL_GetTicks()-sleep_ticks>=1200000) { // increased to 20 minutes
+			if (pwr.is_charging) sleep_ticks += 300000; // check again by 5 minute
 			else PWR_powerOff();
 		}
 	}
