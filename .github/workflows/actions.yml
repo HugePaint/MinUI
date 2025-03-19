@@ -15,7 +15,7 @@ jobs:
       run: ls
       
     - name: make
-      run: make -f makefile .DEFAULT
+      run: make -f makefile common PLATFORM="rg35xx rg35xxplus"
     - name: make all
       run: make -f makefile all
 
