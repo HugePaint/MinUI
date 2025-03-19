@@ -12,7 +12,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: make
-      run: make -f makefile
+      run: make -f makefile .DEFAULT
     - name: make all
       run: make -f makefile all
 
