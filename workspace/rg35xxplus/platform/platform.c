@@ -354,13 +354,17 @@ void PLAT_pollInput(void) {
 		}
 	}
 	
-	if (lid.has_lid && PLAT_lidChanged(NULL)) pad.just_released |= BTN_SLEEP;
+	// if (lid.has_lid && PLAT_lidChanged(NULL)) pad.just_released |= BTN_SLEEP;
+	// only send sleep signal from closing the lid
+	int flag = 1;
+	if (lid.has_lid && PLAT_lidChanged(&flag) && !flag) pad.just_released |= BTN_SLEEP;
 }
 
 int PLAT_shouldWake(void) {
-	int lid_open = 1; // assume open by default
-	if (lid.has_lid && PLAT_lidChanged(&lid_open) && lid_open) return 1;
-	
+	// int lid_open = 1; // assume open by default
+	// if (lid.has_lid && PLAT_lidChanged(&lid_open) && lid_open) return 1;
+	if (lid.has_lid && PLAT_lidChanged(NULL)) {}
+
 	int input;
 	static struct input_event event;
 	for (int i=0; i<INPUT_COUNT; i++) {
